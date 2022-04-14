@@ -46,7 +46,7 @@ func NewMiddleware(p Params) (Middleware, error) {
 
 type TokenPayload struct {
 	Issuer    string              `json:"iss,omitempty"`
-	Subject   int64               `json:"sub,omitempty"`
+	Subject   string              `json:"sub,omitempty"`
 	Expiry    int64               `json:"exp,omitempty"`
 	NotBefore int64               `json:"nbf,omitempty"`
 	IssuedAt  int64               `json:"iat,omitempty"`
