@@ -15,6 +15,7 @@ import (
 
 var Module = fx.Options(
 	fx.Provide(NewMiddleware),
+	fx.Provide(config.Module),
 )
 
 type Params struct {
