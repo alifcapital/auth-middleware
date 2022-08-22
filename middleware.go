@@ -80,6 +80,20 @@ func (m *middleware) Middleware(nextHandler gin.HandlerFunc) gin.HandlerFunc {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token " + err.Error()})
 			return
 		}
+
+		authenticated := false
+
+		for _, system := range out.Systems {
+			if system == m.config.GetString("AUTH_MIDDLEWARE_SERVICE_NAME") {
+				authenticated = true
+			}
+		}
+
+		if !authenticated {
+			c.JSON(http.StatusForbidden, gin.H{"error": "no access to the system"})
+			return
+		}
+
 		c.Set("id", out.Sub)
 		c.Set("username", out.GivenName)
 
