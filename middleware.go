@@ -84,7 +84,7 @@ func (m *middleware) Middleware(nextHandler gin.HandlerFunc) gin.HandlerFunc {
 		authenticated := false
 
 		for _, system := range out.Systems {
-			if system == m.config.GetString("AUTH_MIDDLEWARE_SERVICE_NAME") {
+			if system == m.config.Get().AuthMiddlewareServiceName {
 				authenticated = true
 			}
 		}
